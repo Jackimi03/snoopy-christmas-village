@@ -1,8 +1,7 @@
 name = "snoopy-christmas-village"
 compatibility_date = "2026-11-01"
 pages_build_output_dir = "dist"
-# Add your D1 binding after creating the database:
-# [[d1_databases]]
-# binding = "DB"
-# database_name = "christmas-village"
-# database_id = "YOUR_DATABASE_ID"
+[[d1_databases]]
+binding = "DB"
+database_name = "snoopy-village-2026"
+database_id = "a45dd44f-6f12-4940-9d20-47d4c4a78e72"

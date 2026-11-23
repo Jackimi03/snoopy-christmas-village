@@ -1,28 +1,21 @@
-# La aldea de Navidad
+# La aldea de Snoopy
 
-Proyecto React + TypeScript + Vite con Pages Functions y D1. No está desplegado.
+Aplicación React, TypeScript y Vite con Pages Functions y D1. La versión completa está publicada en https://snoopy-christmas-village.pages.dev/. El repositorio también conserva una versión estática en GitHub Pages, que no incluye la API ni el progreso privado.
 
-## Preparación
+## Desarrollo
 
-`npm install` y `npm run build`. Para probar la API, configure una base D1 local y ejecute el sitio con Wrangler Pages (Vite por sí solo no implementa `/api`). La cuenta y las sorpresas dependen de la hora del servidor, no del reloj del visitante.
+Instalar dependencias con `npm ci`, ejecutar `npm test` y compilar con `npm run build`. Vite por sí solo no ejecuta las funciones `/api`; para probarlas, utilice Wrangler Pages y una base D1 local aislada. La zona horaria de los desbloqueos es America/Panama y la fecha se comprueba en el servidor.
 
-## Configuración privada
+## Despliegue
 
-1. Cree una base D1 en Cloudflare y aplique `db/schema.sql`; configure el binding `DB` en `wrangler.toml`.
-2. Genere **dos tokens aleatorios independientes** de al menos 32 bytes (base64url). Inserte en `recipients` un identificador aleatorio y el SHA-256 hexadecimal de cada token. Nunca almacene el token en texto claro en D1.
-3. Entregue individualmente los enlaces `https://SU-DOMINIO/#privado=TOKEN`. El token se conserva solo en la sesión del navegador y se retira de la barra tras abrir el enlace. Cada enlace es una credencial: no lo comparta públicamente.
-4. Configure Pages con `npm run build`, carpeta `dist` y binding D1. Revise dominio, credenciales, registros de acceso y protección antes de publicar. No se ha creado repositorio ni modificado DNS.
+El proyecto `snoopy-christmas-village` usa `wrangler.toml` para vincular la base D1 existente bajo el nombre `DB`. Una vez autenticado en la cuenta correcta, compile con `npm run build` y use `npx wrangler pages deploy dist --project-name snoopy-christmas-village --branch main`. Los despliegues son directos, no automáticos desde GitHub. No se ha configurado ningún dominio personalizado ni DNS.
 
-El arte de personajes está aislado en `src/characters.tsx`; sustitúyalo por recursos autorizados antes de publicar. Compruebe los derechos de Peanuts. Sin D1, el calendario público funciona en Pages y el privado responde con error; Vite solo muestra un aviso de API indisponible. El token en el fragmento no se envía en la URL HTTP, aunque permanece sensible a extensiones del navegador y capturas.
+## Accesos privados
 
-## Validación realizada
+Los enlaces privados contienen credenciales individuales. Se crearon dos tokens aleatorios y solo se almacenan sus hashes SHA-256 en D1. No incluya los enlaces en Git, registros ni mensajes públicos. El token se retira de la barra al abrir el enlace y se mantiene en la sesión de esa pestaña. Cada destinataria introduce su nombre; sus progresos se consultan con su propia credencial.
 
-`npm test` cubre el cambio de fecha de Panamá, puertas futuras, parámetros inválidos y los 24 contenidos. La compilación de producción pasa con `npm run build`. Las capturas de la referencia y de la implementación están en `docs/`. Las actividades se prueban en navegador móvil; D1 real, los enlaces de destinatarias y el entorno de Pages aún necesitan pruebas integradas tras su configuración.
+La configuración y pruebas en producción confirmaron ambos accesos, el rechazo de un token inválido y el bloqueo de futuras sorpresas. Las pruebas locales cubren el cambio de fecha de Panamá, la separación de progreso y los 24 contenidos. La apertura real del primer día aún debe verificarse a partir del 1 de diciembre de 2026.
 
-El escenario fue generado con la herramienta integrada de imágenes a partir de la indicación: «Aldea navideña panorámica original, ilustración 2D, casita roja central, taller, correo, observatorio, árbol iluminado, nieve, sin personajes ni texto». Los personajes son un SVG sustituible en `src/characters.tsx`.
+## Recursos gráficos
 
-## GitHub Pages
-
-La publicación en GitHub Pages sirve únicamente la parte estática. La aldea y los juegos funcionan allí; **el calendario y el acceso privado permanecen desactivados** hasta conectar una API externa segura. GitHub Pages no ejecuta Pages Functions ni D1. No sustituya las comprobaciones del servidor por el reloj del navegador. Para tener todas las funciones configure y publique por separado el backend de Cloudflare, restrinja CORS al dominio autorizado y configure la URL de la API en la aplicación.
-
-La imagen de Snoopy y Woodstock fue proporcionada por el usuario y se guarda en `public/snoopy-woodstock.png`, aislada a través de `src/characters.tsx`. Compruebe los derechos correspondientes antes de un uso público.
+La imagen de Snoopy y Woodstock fue proporcionada por el usuario y se encuentra en `public/snoopy-woodstock.png`, aislada mediante `src/characters.tsx` para facilitar su sustitución. Revise los derechos de uso de Peanuts para su publicación. El escenario fue generado para este proyecto.
