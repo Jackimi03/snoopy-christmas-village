@@ -19,3 +19,9 @@ La configuración y pruebas en producción confirmaron ambos accesos, el rechazo
 ## Recursos gráficos
 
 La imagen de Snoopy y Woodstock fue proporcionada por el usuario y se encuentra en `public/snoopy-woodstock.png`, aislada mediante `src/characters.tsx` para facilitar su sustitución. Revise los derechos de uso de Peanuts para su publicación. El escenario fue generado para este proyecto.
+
+## Aldea 3D y música
+
+La aldea utiliza Three.js. Se puede caminar con las flechas del teclado o mantener pulsados los controles táctiles; al tocar una casa, Snoopy camina hacia ella y abre su actividad. Si WebGL no está disponible, los enlaces bajo la escena permiten acceder a las actividades.
+
+La música opcional es «Jingle Bells» de Kevin MacLeod (incompetech.com), publicada bajo Creative Commons Attribution 3.0: https://creativecommons.org/licenses/by/3.0/. Fuente y grabación: https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100187. El botón de música requiere una interacción de la visitante y funciona durante la navegación por las actividades.
