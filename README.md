@@ -25,4 +25,4 @@ El escenario fue generado con la herramienta integrada de imágenes a partir de 
 
 La publicación en GitHub Pages sirve únicamente la parte estática. La aldea y los juegos funcionan allí; **el calendario y el acceso privado permanecen desactivados** hasta conectar una API externa segura. GitHub Pages no ejecuta Pages Functions ni D1. No sustituya las comprobaciones del servidor por el reloj del navegador. Para tener todas las funciones configure y publique por separado el backend de Cloudflare, restrinja CORS al dominio autorizado y configure la URL de la API en la aplicación.
 
-La imagen de Snoopy y Woodstock es el icono oficial del calendario de Adviento de Peanuts, enlazado desde https://www.peanuts.com/activities/peanuts-colorin. Permanece separado en `src/characters.tsx`; su uso público requiere revisar y obtener los derechos correspondientes.
+La imagen de Snoopy y Woodstock fue proporcionada por el usuario y se guarda en `public/snoopy-woodstock.png`, aislada a través de `src/characters.tsx`. Compruebe los derechos correspondientes antes de un uso público.
