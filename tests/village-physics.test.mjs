@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import ts from 'typescript';import fs from 'node:fs';
+const source=fs.readFileSync(new URL('../src/villagePhysics.ts',import.meta.url),'utf8');const js=ts.transpile(source,{module:ts.ModuleKind.ESNext});const {moveWithCollisions,isBlocked}=await import('data:text/javascript;base64,'+Buffer.from(js).toString('base64'));
+test('un arrastre rápido no atraviesa una casa',()=>{let o=[{kind:'box',x:0,z:0,halfWidth:2,halfDepth:2}];let p=moveWithCollisions({x:-5,z:0},{x:10,z:0},o);assert.ok(p.x< -2.6);assert.equal(isBlocked(p,o),false)});
+test('se puede bordear un árbol y moverse por una calle libre',()=>{let o=[{kind:'circle',x:0,z:0,radius:1}];let p=moveWithCollisions({x:-3,z:0},{x:6,z:0},o);assert.ok(p.x < -1.6);let q=moveWithCollisions({x:-3,z:3},{x:6,z:0},o);assert.ok(q.x>2.9)});
